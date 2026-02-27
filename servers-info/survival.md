@@ -2,7 +2,7 @@
 description: RSMのサバイバル鯖について解説します。
 ---
 
-# サバイバル鯖（なんでもありサバイバル）
+# なんでもありサバイバル鯖（新リリース！）
 
 <figure><img src="../.gitbook/assets/survival-banner.png" alt=""><figcaption></figcaption></figure>
 
