@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomServer Release Countdown - Stream</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --accent-color: #ff0000;
+            /* 画像の「残り」の部分のような赤 */
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* 16:9のコンテナ */
+        .stream-container {
+            width: 100vw;
+            height: 56.25vw;
+            /* 16:9 aspect ratio */
+            max-height: 100vh;
+            max-width: 177.78vh;
+            /* 16:9 aspect ratio */
+            position: relative;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #fff;
+            /* 外枠 */
+            box-sizing: border-box;
+        }
+
+        /* 画像のような装飾フレーム */
+        .frame-top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: #fff;
+        }
+
+        .frame-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: #fff;
+        }
+
+        .frame-left {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            width: 2px;
+            background: #fff;
+        }
+
+        .frame-right {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            right: 20px;
+            width: 2px;
+            background: #fff;
+        }
+
+        /* 四隅の切り欠きデザイン (画像参照) */
+        .corner-cut {
+            position: absolute;
+            background: #000;
+            z-index: 10;
+        }
+
+        .top-left-cut {
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+        }
+
+        .bottom-right-cut {
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+        }
+
+        /* タイトル部分 */
+        .title {
+            font-size: 2.5rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        .title span {
+            font-family: serif;
+            margin: 0 1rem;
+        }
+
+        /* 「残り」ラベル */
+        .label-remaining {
+            color: var(--accent-color);
+            font-size: 3rem;
+            margin-bottom: 0;
+            margin-right: 0;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        /* カウントダウンタイマー本体 */
+        .timer {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.2rem;
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 1200px) {
+            .timer {
+                font-size: 8rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .label-remaining {
+                font-size: 2.2rem;
+                margin-right: 20rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stream-container">
+        <!-- フレーム装飾 -->
+        <div class="frame-top"></div>
+        <div class="frame-bottom"></div>
+        <div class="frame-left"></div>
+        <div class="frame-right"></div>
+
+        <!-- 四隅の白枠 (画像のスタイル再現) -->
+        <div
+            style="position:absolute; top:0; left:0; width:40px; height:40px; border-top:10px solid #fff; border-left:10px solid #fff;">
+        </div>
+        <div
+            style="position:absolute; bottom:0; right:0; width:40px; height:40px; border-bottom:10px solid #fff; border-right:10px solid #fff;">
+        </div>
+
+        <div class="title" style="position: absolute; top: 80px;">- 新 RoomServer リリースまで -</div>
+
+        <div style="display: flex; align-items: baseline; gap: 2rem;">
+            <div class="label-remaining">残り</div>
+            <div id="timer" class="timer">00:00:00:00</div>
+        </div>
+    </div>
+
+    <script>
+        const targetDate = new Date('2026-03-01T14:00:00+09:00').getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('timer').innerHTML = "00:00:00:00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // 表示形式を [日:時:分:秒] に整形
+            const d = String(days).padStart(2, '0');
+            const h = String(hours).padStart(2, '0');
+            const m = String(minutes).padStart(2, '0');
+            const s = String(seconds).padStart(2, '0');
+
+            document.getElementById('timer').textContent = `${d}:${h}:${m}:${s}`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+
+</html>
