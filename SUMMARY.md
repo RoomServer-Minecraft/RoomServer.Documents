@@ -1,6 +1,7 @@
 # Table of contents
 
 * [ようこそRoomServerへ！](README.md)
+* [公式ドキュメント・ルールブック](docs.md)
 * [利用規約](tos.md)
 * [プライバシーポリシー](policy.md)
 
