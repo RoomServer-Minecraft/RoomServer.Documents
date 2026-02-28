@@ -10,20 +10,22 @@ description: 統合版（Switch/PC/PS4, 5/スマホ等）の方向けの参加�
 
 ## 参加方法
 
-1. Minecraftを**起動**します
+1. Minecraftを起動し、**プレイ**を押します。
 
 <figure><img src="../.gitbook/assets/how-to-join-bedrock-1.png" alt=""><figcaption></figcaption></figure>
 
-2. **プレイ**を押して、**右上にあるフレンドのタブ**に行きます。  
-下記画像のようになったら、**フレンドを追加** を押してください。
+2. **ソーシャル**を押します。
 
 <figure><img src="../.gitbook/assets/how-to-join-bedrock-2.png" alt=""><figcaption></figcaption></figure>
 
-3. **ページの一番下のゲーマータグを検索** から、mcss3751を検索してフレンドを申請しましょう。
+3. **プレイヤーを検索**を押します。
 
-<div data-full-width="false"><figure><img src="../.gitbook/assets/how-to-join-bedrock-3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/how-to-join-bedrock-3.png" alt=""><figcaption></figcaption></figure></div>
+
+4. `mcss3751` を**検索**し、**追加**を押します。
+
 <figure><img src="../.gitbook/assets/how-to-join-bedrock-4.png" alt=""><figcaption></figcaption></figure></div>
 
-4. **フレンドに、**  `mcss3751` **のワールド**が出てきたら参加しましょう！
+5. `mcss3751` のワールドが出てきます。サーバーに接続して、RoomServerに**参加**しましょう！
 
 <figure><img src="../.gitbook/assets/how-to-join-bedrock-5.png" alt=""><figcaption></figcaption></figure>
