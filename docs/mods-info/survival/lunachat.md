@@ -10,19 +10,19 @@
 <table>
 	<thead><tr><th>コマンド</th><th>説明</th></tr></thead>
 	<tbody>
-		<tr><td><pre><code>/ch create &#x3C;channel></code></pre></td><td>新しいチャットチャンネルを作成する</td></tr>
-		<tr><td><pre><code>/ch join &#x3C;channel></code></pre></td><td>指定したチャンネルに参加する</td></tr>
-		<tr><td><pre><code>/ch join !</code></pre></td><td>発言先を通常チャットに戻す（グローバルチャットへ）</td></tr>
-		<tr><td><pre><code>/ch leave</code></pre></td><td>現在参加中のチャンネルから退出する</td></tr>
-		<tr><td><pre><code>/ch list [page]</code></pre></td><td>チャンネル一覧を表示。参加中・未参加などが色分け表示される。ページ指定も可</td></tr>
-		<tr><td><pre><code>/ch info</code></pre></td><td>チャンネルのメンバー情報（オンライン・オフライン、モデレーター）を表示する</td></tr>
-		<tr><td><pre><code>/ch log [d=YYYY][p=名][f=キーワード]</code></pre></td><td>当日または指定日のログを表示。プレイヤー名やキーワードでフィルタ可能</td></tr>
-		<tr><td><pre><code>/ch accept</code></pre></td><td>招待されたチャンネルの参加を承諾する</td></tr>
-		<tr><td><pre><code>/ch deny</code></pre></td><td>チャンネルへの招待を拒否する</td></tr>
-		<tr><td><pre><code>/ch hide [channel]</code></pre></td><td>特定チャンネルの発言を非表示にする（指定省略で現在のチャンネル）</td></tr>
-		<tr><td><pre><code>/ch unhide [channel]</code></pre></td><td>非表示にしたチャンネルの発言を再表示する</td></tr>
-		<tr><td><pre><code>/jp off</code></pre></td><td>日本語変換（Jp機能）をオフにする（英語入力を優先したい時など）</td></tr>
-		<tr><td><pre><code>/jp on</code></pre></td><td>日本語変換をオンにする</td></tr>
+		<tr><td>`/ch create <channel>`</td><td>新しいチャットチャンネルを作成する</td></tr>
+		<tr><td>`/ch join <channel>`</td><td>指定したチャンネルに参加する</td></tr>
+		<tr><td>`/ch join !`</td><td>発言先を通常チャットに戻す（グローバルチャットへ）</td></tr>
+		<tr><td>`/ch leave`</td><td>現在参加中のチャンネルから退出する</td></tr>
+		<tr><td>`/ch list [page]`</td><td>チャンネル一覧を表示。参加中・未参加などが色分け表示される。ページ指定も可</td></tr>
+		<tr><td>`/ch info`</td><td>チャンネル의メンバー情報（オンライン・オフライン、モデレーター）を表示する</td></tr>
+		<tr><td>`/ch log [d=YYYY][p=名][f=キーワード]`</td><td>当日または指定日のログを表示。プレイヤー名やキーワードでフィルタ可能</td></tr>
+		<tr><td>`/ch accept`</td><td>招待されたチャンネルの参加を承諾する</td></tr>
+		<tr><td>`/ch deny`</td><td>チャンネルへの招待を拒否する</td></tr>
+		<tr><td>`/ch hide [channel]`</td><td>特定チャンネルの発言を非表示にする（指定省略で現在のチャンネル）</td></tr>
+		<tr><td>`/ch unhide [channel]`</td><td>非表示にしたチャンネルの発言を再表示する</td></tr>
+		<tr><td>`/jp off`</td><td>日本語変換（Jp機能）をオフにする（英語入力を優先したい時など）</td></tr>
+		<tr><td>`/jp on`</td><td>日本語変換をオンにする</td></tr>
 	</tbody>
 </table>
 

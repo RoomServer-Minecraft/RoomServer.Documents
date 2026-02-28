@@ -310,6 +310,34 @@
             border-radius: 4px;
             font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
             font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .markdown-body code:hover {
+            background-color: var(--border-color);
+            border-color: var(--accent-color);
+        }
+
+        .markdown-body code:active {
+            transform: scale(0.95);
+        }
+
+        .markdown-body code::after {
+            content: '\f0c5';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 400;
+            font-size: 0.7em;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .markdown-body pre code::after {
+            display: none;
         }
 
         /* Code Block Wrapper */
@@ -399,10 +427,23 @@
             flex: 1;
         }
 
-        .hint.info {
+        .hint.info,
+        .hint.note {
             background: #e7f3ff;
             border-color: #cce5ff;
             color: #004085;
+        }
+
+        .hint.tip {
+            background: #e6ffec;
+            border-color: #acf2bd;
+            color: #116329;
+        }
+
+        .hint.important {
+            background: #f5f0ff;
+            border-color: #d1b9ff;
+            color: #5a32a3;
         }
 
         .hint.warning {
@@ -411,16 +452,30 @@
             color: #856404;
         }
 
-        .hint.danger {
+        .hint.danger,
+        .hint.caution {
             background: #f8d7da;
             border-color: #f5c6cb;
             color: #721c24;
         }
 
-        [data-theme="dark"] .hint.info {
+        [data-theme="dark"] .hint.info,
+        [data-theme="dark"] .hint.note {
             background: rgba(56, 132, 255, 0.1);
             border-color: rgba(56, 132, 255, 0.2);
             color: #8ec2ff;
+        }
+
+        [data-theme="dark"] .hint.tip {
+            background: rgba(46, 160, 67, 0.1);
+            border-color: rgba(46, 160, 67, 0.2);
+            color: #7ee787;
+        }
+
+        [data-theme="dark"] .hint.important {
+            background: rgba(137, 87, 229, 0.1);
+            border-color: rgba(137, 87, 229, 0.2);
+            color: #d2a8ff;
         }
 
         [data-theme="dark"] .hint.warning {
@@ -429,7 +484,8 @@
             color: #ffe18a;
         }
 
-        [data-theme="dark"] .hint.danger {
+        [data-theme="dark"] .hint.danger,
+        [data-theme="dark"] .hint.caution {
             background: rgba(248, 81, 73, 0.1);
             border-color: rgba(248, 81, 73, 0.2);
             color: #ff9ca3;
@@ -607,7 +663,7 @@
         };
 
         // Custom Code Block Rendering for Copy Button
-        renderer.code = (code, lang) => {
+        renderer.code = ({ text, lang }) => {
             const id = 'code-' + Math.random().toString(36).substr(2, 9);
             const language = lang || 'plaintext';
             return `
@@ -617,7 +673,7 @@
                             <i class="fas fa-copy"></i> Copy
                         </button>
                     </div>
-                    <pre><code id="${id}" class="language-${language}">${marked.parseInline(code)}</code></pre>
+                    <pre><code id="${id}" class="language-${language}">${text}</code></pre>
                 </div>`;
         };
 
@@ -751,12 +807,32 @@
             // Pre-process GitBook Tags
             text = text.replace(/^---[\r\n][\s\S]*?[\r\n]---/, '');
 
+            // Handle GitHub Alerts (> [!NOTE])
+            text = text.replace(/^> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][\r\n]([\s\S]*?)(?=[\r\n]{2,}|$)/gm, (match, style, content) => {
+                const lowerStyle = style.toLowerCase();
+                let icon = 'info-circle';
+                let label = '情報';
+
+                if (lowerStyle === 'tip') { icon = 'lightbulb'; label = 'ヒント'; }
+                if (lowerStyle === 'important') { icon = 'exclamation-circle'; label = '重要'; }
+                if (lowerStyle === 'warning') { icon = 'exclamation-triangle'; label = '警告'; }
+                if (lowerStyle === 'caution') { icon = 'hand-paper'; label = '注意'; }
+
+                // Remove the ">" from lines in content if present
+                const cleanContent = content.split('\n').map(line => line.replace(/^>\s?/, '')).join('\n');
+                return `<div class="hint ${lowerStyle}"><div style="display:flex; flex-direction:column; gap:4px; font-weight:700; font-size:0.85rem; margin-bottom:8px;"><div style="display:flex; align-items:center; gap:8px;"><i class="fas fa-${icon}"></i> ${label}</div></div><div class="hint-content">${marked.parse(cleanContent.trim())}</div></div>`;
+            });
+
             // Handle {% hint %}
             text = text.replace(/\{% hint style="(.+?)" %\}([\s\S]*?)\{% endhint %\}/g, (match, style, content) => {
                 let icon = 'info-circle';
-                if (style === 'warning') icon = 'exclamation-triangle';
-                if (style === 'danger') icon = 'times-circle';
-                return `<div class="hint ${style}"><i class="fas fa-${icon} hint-icon"></i><div class="hint-content">${marked.parse(content.trim())}</div></div>`;
+                let label = '情報';
+                if (style === 'warning') { icon = 'exclamation-triangle'; label = '警告'; }
+                if (style === 'danger' || style === 'caution') { icon = 'hand-paper'; label = '注意'; }
+                if (style === 'info' || style === 'note') { icon = 'info-circle'; label = '情報'; }
+                if (style === 'success' || style === 'tip') { icon = 'lightbulb'; label = 'ヒント'; style = 'tip'; }
+
+                return `<div class="hint ${style}"><div style="display:flex; flex-direction:column; gap:4px; font-weight:700; font-size:0.85rem; margin-bottom:8px;"><div style="display:flex; align-items:center; gap:8px;"><i class="fas fa-${icon}"></i> ${label}</div></div><div class="hint-content">${marked.parse(content.trim())}</div></div>`;
             });
 
             // Handle {% code %}
@@ -780,9 +856,51 @@
             // Parse
             contentEl.innerHTML = marked.parse(text);
 
+            // Process backticks inside tables that marked might have missed (raw HTML tables)
+            document.querySelectorAll('.markdown-body td').forEach(td => {
+                if (td.innerHTML.includes('`')) {
+                    td.innerHTML = td.innerHTML.replace(/`([^`\n]+?)`/g, '<code>$1</code>');
+                }
+            });
+
             // Syntax highlighting
             document.querySelectorAll('pre code').forEach((el) => {
                 hljs.highlightElement(el);
+            });
+
+            // Inline code copy functionality
+            document.querySelectorAll('.markdown-body code').forEach((el) => {
+                if (el.parentElement.tagName !== 'PRE') {
+                    el.addEventListener('click', () => {
+                        const code = el.innerText;
+                        navigator.clipboard.writeText(code).then(() => {
+                            const originalBg = el.style.backgroundColor;
+                            const originalBorder = el.style.borderColor;
+                            el.style.backgroundColor = 'rgba(40, 167, 69, 0.1)';
+                            el.style.borderColor = '#28a745';
+
+                            const rect = el.getBoundingClientRect();
+                            const tooltip = document.createElement('div');
+                            tooltip.innerText = 'Copied!';
+                            tooltip.style.position = 'absolute';
+                            tooltip.style.background = '#28a745';
+                            tooltip.style.color = 'white';
+                            tooltip.style.padding = '2px 6px';
+                            tooltip.style.borderRadius = '4px';
+                            tooltip.style.fontSize = '10px';
+                            tooltip.style.top = (window.scrollY + rect.top - 25) + 'px';
+                            tooltip.style.left = (window.scrollX + rect.left) + 'px';
+                            tooltip.style.zIndex = '1000';
+                            document.body.appendChild(tooltip);
+
+                            setTimeout(() => {
+                                el.style.backgroundColor = originalBg;
+                                el.style.borderColor = originalBorder;
+                                tooltip.remove();
+                            }, 1000);
+                        });
+                    });
+                }
             });
 
             generateRightToc();
