@@ -73,12 +73,12 @@ description: RSMのサバイバル鯖について解説します。
 * 初期スポーンから**半径2チャンク以内**
 * このエリア内ではPvP、破壊行為、窃盗行為は**禁止**
 
-## 導入Mod一覧
+## 導入Mods一覧
 
 | Mod名        | 説明 |
-| --------------- | -------------------------- |
-| DeclarationCore | 戦争・勢力に関するシステムを管理できます。 |
-| Gsit            | 座ったり泳いだりできます。 |
-| LunaChat        | ローマ字のチャットを変換してくれます。 |
-| squaremap       | Web上でワールドの全体マップを見ることができます。 |
-| WorldGuard      | 範囲内の建造物を保護できます。 |
+| -------------------------------------------------------- | -------------------------- |
+| [DeclarationCore](../mods-info/survival/declarationcore.md) | 戦争・勢力に関するシステムを管理できます。 |
+| [Gsit](../mods-info/survival/gsit.md)                       | 座ったり泳いだりできます。 |
+| [LunaChat](../mods-info/survival/lunachat.md)               | ローマ字のチャットを変換してくれます。 |
+| [squaremap](../mods-info/survival/squaremap.md)             | Web上でワールドの全体マップを見ることができます。 |
+| [WorldGuard](../mods-info/survival/worldguard.md)           | 範囲内の建造物を保護できます。 |
