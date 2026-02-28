@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー - RoomServer</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #161b22;
+            color: #c9d1d9;
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+            padding-top: 70px;
+        }
+
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            z-index: 1000;
+            background-color: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #30363d;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .main-header nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #c9d1d9;
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .btn-top-page {
+            background-color: #f0f6fc;
+            color: #161b22 !important;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .btn-discord {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #555;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #c9d1d9;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 1090;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 280px;
+            height: 100%;
+            background: #161b22;
+            transform: translateX(100%);
+            transition: 0.3s;
+            z-index: 1100;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .mobile-nav-panel.active {
+            transform: translateX(0);
+        }
+
+        .close-menu-button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 36px;
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 15px 0;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #30363d;
+        }
+
+        main {
+            padding: 60px 20px;
+        }
+
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .policy-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .policy-title h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .policy-title p {
+            color: #8b949e;
+        }
+
+        .article-block {
+            background: #1c2128;
+            border: 1px solid #30363d;
+            border-left: 4px solid #61dafb;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .article-block h2 {
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .article-block ul {
+            padding-left: 20px;
+        }
+
+        .main-footer {
+            background: #0d1117;
+            color: #8b949e;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #30363d;
+        }
+
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav>
+            <a href="index.html" class="logo">RoomServer</a>
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="docs.html">ドキュメント</a></li>
+                    <li><a href="recruit.html">運営募集</a></li>
+                    <li><a href="policy.html">プライバシーポリシー</a></li>
+                    <li><a href="tos.html">利用規約</a></li>
+                </ul>
+                <a href="https://discord.roomserver.blog" class="btn-discord" target="_blank">
+                    <i class="fab fa-discord"></i> Discordに参加
+                </a>
+                <a href="index.html" class="btn-top-page">トップページ</a>
+            </div>
+            <button class="mobile-menu-button"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <div class="mobile-nav-overlay"></div>
+    <div class="mobile-nav-panel">
+        <button class="close-menu-button">&times;</button>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">トップページ</a></li>
+            <li><a href="docs.html">ドキュメント</a></li>
+            <li><a href="recruit.html">運営募集</a></li>
+            <li><a href="policy.html">プライバシーポリシー</a></li>
+            <li><a href="tos.html">利用規約</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="policy-container">
+
+            <div class="policy-title">
+                <h1>📜 RoomServer プライバシーポリシー</h1>
+                <p>最終更新日: 2026年2月23日</p>
+                <p>RoomServerはユーザーのプライバシーを尊重し、取得する個人情報の適切な管理に努めます。</p>
+            </div>
+
+            <div class="article-block">
+                <h2>第1条（取得する情報）</h2>
+                <ul>
+                    <li>Minecraftユーザー名・UUID</li>
+                    <li>Discordユーザー名・ユーザーID</li>
+                    <li>接続日時・IPアドレス・ホスト名</li>
+                    <li>ゲーム内チャットログ・行動ログ</li>
+                    <li>Discord発言履歴</li>
+                    <li>寄付決済ID（カード情報は保持しません）</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第2条（利用目的）</h2>
+                <ul>
+                    <li>サービス運営・認証・特典付与</li>
+                    <li>荒らし対策・不正防止</li>
+                    <li>ユーザーサポート</li>
+                    <li>システム改善・最適化</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第3条（第三者提供）</h2>
+                <ul>
+                    <li>本人同意がある場合</li>
+                    <li>法令に基づく要請がある場合</li>
+                    <li>BAN共有プラットフォーム登録</li>
+                    <li>緊急の人命保護が必要な場合</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第4条（情報の保護）</h2>
+                <ul>
+                    <li>適切なセキュリティ対策を実施</li>
+                    <li>アクセス権限はOWNERおよび限定STAFFのみ</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第5条（外部サービス）</h2>
+                <ul>
+                    <li>Microsoft / Mojang</li>
+                    <li>Discord</li>
+                    <li>PayPal / Stripe 等</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第6条（開示・削除）</h2>
+                <ul>
+                    <li>本人からの請求に対応可能</li>
+                    <li>BAN記録等は削除不可の場合あり</li>
+                </ul>
+            </div>
+
+            <div class="article-block">
+                <h2>第7条（改定）</h2>
+                <p>本ポリシーは必要に応じて改定され、掲載時点より効力を生じます。</p>
+            </div>
+
+            <div class="article-block">
+                <h2>お問い合わせ</h2>
+                <p>公式Discord内「チケット」チャンネルまでご連絡ください。</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 - <span id="year"></span> KakkaGroup</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
