@@ -13,18 +13,13 @@
 ## サーバー説明 <a href="#servers-info" id="servers-info"></a>
 
 * [HUB鯖](servers-info/hub.md)
-* [なんでもありサバイバル鯖](servers-info/survival.md)
+* [サバイバル鯖](servers-info/survival.md)
 * [経済鯖](servers-info/economy.md)
 
-## プラグイン <a href="#plugins-info" id="plugins-info"></a>
+## サバイバル鯖 - プラグイン説明 <a href="#plugins-info" id="plugins-info"></a>
 
-* [BlockLocker](plugins-info/blocklocker.md)
-* [DeclarationCore](plugins-info/declarationcore.md)
-* [EssentialsX](plugins-info/essentialsx.md)
-* [Gsit](plugins-info/gsit.md)
-* [IronElevators](plugins-info/ironelevators.md)
-* [LunaChat](plugins-info/lunachat.md)
-* [Minepacks](plugins-info/minepacks.md)
-* [squaremap](plugins-info/squaremap.md)
-* [VeinMiner](plugins-info/veinminer.md)
-* [WorldGuard](plugins-info/worldguard.md)
+* [DeclarationCore](mods-info/survival/declarationcore.md)
+* [Gsit](mods-info/survival/gsit.md)
+* [LunaChat](mods-info/survival/lunachat.md)
+* [squaremap](mods-info/survival/squaremap.md)
+* [WorldGuard](mods-info/survival/worldguard.md)
