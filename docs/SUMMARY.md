@@ -16,7 +16,7 @@
 * [サバイバル鯖](servers-info/survival.md)
 * [経済鯖](servers-info/economy.md)
 
-## サバイバル鯖 - プラグイン説明 <a href="#plugins-info" id="plugins-info"></a>
+## サバイバル鯖 - MOD説明 <a href="#plugins-info" id="plugins-info"></a>
 
 * [DeclarationCore](mods-info/survival/declarationcore.md)
 * [Gsit](mods-info/survival/gsit.md)
