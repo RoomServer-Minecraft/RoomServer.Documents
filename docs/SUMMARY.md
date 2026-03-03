@@ -19,7 +19,4 @@
 ## サバイバル鯖 - MOD説明 <a href="#plugins-info" id="plugins-info"></a>
 
 * [DeclarationCore](mods-info/survival/declarationcore.md)
-* [Gsit](mods-info/survival/gsit.md)
-* [LunaChat](mods-info/survival/lunachat.md)
 * [squaremap](mods-info/survival/squaremap.md)
-* [WorldGuard](mods-info/survival/worldguard.md)
