@@ -24,9 +24,8 @@
 
 また、初期スポーン周辺の保護エリアや、運営に承認された公共施設などは、戦争中であっても破壊することはできません。
 
-## コマンド一覧
 
-すべての機能は `/war` コマンドから利用できます。
+### クラン関連
 
 <table>
 	<thead>
@@ -37,32 +36,85 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>`/war fukoku`</td>
+			<td><code>/war clan gui</code></td>
+			<td>クラン管理GUIを開きます。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan create &#x3C;name></code></td>
+			<td>新しくクランを作成します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan invite &#x3C;player></code></td>
+			<td>他のプレイヤーを自分のクランに招待します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan join &#x3C;name></code></td>
+			<td>招待されたクランに参加します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan leave</code></td>
+			<td>現在所属しているクランから脱退します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan disband</code></td>
+			<td>所属しているクランを解散します（リーダーのみ）。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan info [all|leader|member|general]</code></td>
+			<td>クランの情報を表示します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan set war_leader auto</code></td>
+			<td>クランリーダーをメンバー内からランダムに再選出します。</td>
+		</tr>
+		<tr>
+			<td><code>/war clan set war_leader &#x3C;mcid></code></td>
+			<td>指定したプレイヤーを新しいクランリーダーに設定します。</td>
+		</tr>
+		<tr>
+			<td><code>/war allclan info</code></td>
+			<td>サーバーに存在する全クランのメンバー一覧を表示します。</td>
+		</tr>
+	</tbody>
+</table>
+
+### 宣戦・戦争関連
+
+<table>
+	<thead>
+		<tr>
+			<th width="250">コマンド</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>/war fukoku</code></td>
 			<td>宣戦布告メニューを表示します。相手や条件（PvP/破壊）を設定できます。</td>
 		</tr>
 		<tr>
-			<td>`/war menu`</td>
-			<td>自分が関わっている宣戦の一覧を表示し、合意や拒否、詳細確認ができます。</td>
+			<td><code>/war accept &#x3C;id></code></td>
+			<td>受け取った宣戦布告に同意します（GUI上からも可能です）。</td>
 		</tr>
 		<tr>
-			<td>`/war info`</td>
-			<td>現在進行中、またはPENDING状態の宣戦情報の詳細を表示します。</td>
+			<td><code>/war deny &#x3C;id></code></td>
+			<td>宣戦布告を拒否します。</td>
 		</tr>
 		<tr>
-			<td>`/war clan info`</td>
-			<td>所属しているクランの情報やリーダー、メンバーの一覧を確認できます。</td>
+			<td><code>/war cancel &#x3C;id></code></td>
+			<td>送信した宣戦布告を取り消します。</td>
 		</tr>
 		<tr>
-			<td>`/war clan set war_leader`</td>
-			<td>クラン内で宣戦布告等の権限を持つ「戦争リーダー」を設定します。</td>
+			<td><code>/war menu</code></td>
+			<td>自分が関わっている宣戦の一覧を表示します。</td>
 		</tr>
 		<tr>
-			<td>`/war end`</td>
-			<td>進行中の戦争を終了させる、または宣戦布告を取り消します（双方合意が必要）。</td>
+			<td><code>/war info [war_id]</code></td>
+			<td>宣戦情報の詳細を表示します。</td>
 		</tr>
 		<tr>
-			<td>`/war help Commands`</td>
-			<td>利用可能なすべてのコマンドの一覧とヘルプを表示します。</td>
+			<td><code>/war help</code></td>
+			<td>利用可能なコマンドのヘルプを表示します。</td>
 		</tr>
 	</tbody>
 </table>
