@@ -22,3 +22,4 @@
 * [squaremap](mods-info/survival/squaremap.md)
 * [CyanSetHome](mods-info/survival/cyansethome.md)
 * [WorldGuard](mods-info/survival/worldguard.md)
+* [Private Chests](mods-info/survival/private-chest.md)
