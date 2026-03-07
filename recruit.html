@@ -4,398 +4,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>運営募集 - RoomServer</title>
+    <title>Recruitment - RoomServer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Outfit:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <style>
-        body {
-            background-color: #161b22;
-            color: #c9d1d9;
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            line-height: 1.8;
-            padding-top: 70px;
+        :root {
+            --primary: #d2a679;
+            --secondary: #f1c40f;
+            --accent: #b37b42;
+            --bg-dark: #0e0d0b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #a8a29e;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'DotGothic16', 'Outfit', 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .loading-spinner-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(210, 166, 121, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- Header --- */
         .main-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 70px;
+            height: 80px;
             z-index: 1000;
-            background-color: rgba(22, 27, 34, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid #30363d;
-            padding: 0 20px;
-            box-sizing: border-box;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
         }
 
-        .main-header nav {
-            max-width: 1100px;
+        .nav-container {
+            width: 100%;
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%;
         }
 
         .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
             color: #fff;
             text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .desktop-nav {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
             gap: 30px;
-            margin: 0;
-            padding: 0;
-            align-items: center;
         }
 
         .nav-links a {
-            color: #c9d1d9;
+            color: var(--text-muted);
             text-decoration: none;
-            transition: color .2s ease;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
             color: #fff;
         }
 
-        .btn-top-page {
-            background-color: #f0f6fc;
-            color: #161b22 !important;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-
-        .btn-discord {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: transparent;
-            color: #c9d1d9;
-            border: 1px solid #555;
-            padding: 8px 16px;
-            border-radius: 6px;
+        .btn-top {
+            background: #fff;
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        .btn-discord:hover {
-            background-color: #383838;
-            border-color: #8b949e;
-            color: #ffffff;
-        }
-
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1090;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 280px;
-            height: 100%;
-            background-color: #161b22;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, .3);
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            z-index: 1100;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .mobile-nav-panel.active {
-            transform: translateX(0);
-        }
-
-        .close-menu-button {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 36px;
-            line-height: 1;
-            cursor: pointer;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-            margin-top: 60px;
-        }
-
-        .mobile-nav-links a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 18px 10px;
-            border-bottom: 1px solid #30363d;
-        }
-
+        /* --- Content Area --- */
         main {
-            padding: 60px 20px;
-        }
-
-        .recruit-container {
-            max-width: 800px;
+            padding: 160px 20px 100px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .recruit-container h2 {
-            font-size: 2rem;
-            color: #fff;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
-            margin-top: 50px;
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
         }
 
-        .recruit-container h3 {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-top: 40px;
+        .badge {
+            display: inline-block;
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
-        .recruit-container ul,
-        .recruit-container ol {
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .article-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .article-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .article-card h2::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .article-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .article-card ul,
+        .article-card ol {
             padding-left: 20px;
+            color: var(--text-muted);
         }
 
-        .recruit-container li {
-            margin-bottom: 10px;
+        .article-card li {
+            margin-bottom: 15px;
         }
 
-        .recruit-container strong {
-            color: #61dafb;
+        .article-card strong {
+            color: #fff;
         }
 
+        /* Role Grid */
         .role-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
-        .role-card {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 8px;
+        .role-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
         }
 
-        .role-card h4 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-            color: #fff;
+        .role-box:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
         }
 
-        .apply-button-container {
+        .role-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .role-box p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Apply Button */
+        .apply-btn-container {
             text-align: center;
-            margin: 40px 0;
+            margin: 60px 0;
         }
 
         .btn-apply {
-            background-color: #2ecc71;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), #27ae60);
             color: #fff;
-            padding: 15px 30px;
+            padding: 18px 45px;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.2rem;
             font-weight: 700;
-            transition: background-color .2s ease;
-            display: inline-block;
+            font-size: 1.2rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
         }
 
         .btn-apply:hover {
-            background-color: #27ae60;
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.5);
         }
 
         .closing-remark {
             text-align: center;
-            font-size: 1.2rem;
-            margin-top: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 60px;
+            opacity: 0.9;
         }
 
-        .main-footer {
-            background-color: #0d1117;
-            color: #8b949e;
-            padding: 30px 20px;
+        /* --- Footer --- */
+        .footer {
+            padding: 60px 40px;
+            border-top: 1px solid var(--glass-border);
             text-align: center;
-            font-size: .9rem;
-            border-top: 1px solid #30363d;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
             .desktop-nav {
                 display: none;
             }
 
-            .mobile-menu-button {
-                display: block;
+            .article-card {
+                padding: 30px;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner-circle"></div>
+    </div>
     <header class="main-header">
-        <nav>
-            <a href="index.html" class="logo">RoomServer</a>
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/roomserver_logo_no_bg.png" alt="RoomServer Logo">
+            </a>
             <div class="desktop-nav">
                 <ul class="nav-links">
                     <li><a href="docs.html">ドキュメント</a></li>
-                    <li><a href="recruit.html">運営募集</a></li>
-                    <li><a href="policy.html">プライバシーポリシー</a></li>
-                    <li><a href="tos.html">コミュニティガイド</a></li>
+                    <li><a href="recruit.html">スタッフ募集</a></li>
+                    <li><a href="policy.html">プライバシー</a></li>
+                    <li><a href="tos.html">ガイドライン</a></li>
                 </ul>
-                <a href="https://discord.roomserver.jp" class="btn-discord" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-discord"></i> Discordに参加</a>
-                <a href="index.html" class="btn-top-page">トップページ</a>
+                <a href="index.html" class="btn-top">Home</a>
             </div>
-            <button class="mobile-menu-button" aria-label="メニューを開く"><i class="fas fa-bars"></i></button>
         </nav>
     </header>
-    <div class="mobile-nav-overlay"></div>
-    <div class="mobile-nav-panel">
-        <button class="close-menu-button" aria-label="メニューを閉じる">&times;</button>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html">トップページ</a></li>
-            <li><a href="docs.html">ドキュメント</a></li>
-            <li><a href="recruit.html">運営募集</a></li>
-            <li><a href="policy.html">プライバシーポリシー</a></li>
-            <li><a href="tos.html">コミュニティガイド</a></li>
-            <li><a href="https://discord.roomserver.jp" target="_blank" rel="noopener noreferrer"><i
-                        class="fab fa-discord"></i> Discordに参加</a></li>
-        </ul>
-    </div>
+
     <main>
-        <div class="recruit-container">
-            <h2>📆 募集期間・流れ</h2>
-            <p>募集期間：2週間～1か月</p>
+        <div class="page-header">
+            <span class="badge"
+                style="background: rgba(231, 76, 60, 0.1); border-color: #e74c3c; color: #e74c3c;">Closed</span>
+            <h1>Staff Recruitment</h1>
+            <p>RoomServerでは、現在スタッフ募集を停止しております。</p>
+        </div>
 
-            <h2>🎯 募集理由</h2>
-            <ul>
-                <li>👤 <strong>鯖主の負担軽減</strong></li>
-                <li>🚀 <strong>運営が主体的に動き、メンバーを引っ張る環境づくり</strong></li>
-            </ul>
-            <div class="apply-button-container">
-                <a href="https://forms.gle/9qHoYZZsZJm22ET89" class="btn-apply" target="_blank"
-                    rel="noopener noreferrer">📎 応募はこちらから</a>
+        <div class="article-card" style="text-align: center; padding: 60px 40px;">
+            <h2 style="justify-content: center; margin-bottom: 20px;">申し訳ございません</h2>
+            <p style="font-size: 1.15rem; color: var(--text-main);">
+                現在、新規スタッフの募集は行っておりません。<br>
+                次回の募集までしばらくお待ちいただきますようお願い申し上げます。
+            </p>
+
+            <div
+                style="margin: 40px 0; padding: 30px; background: rgba(255, 255, 255, 0.02); border-radius: 24px; border: 1px dashed var(--glass-border);">
+                <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem;"><i
+                        class="fas fa-bullhorn"></i> 募集再開を待つには</h3>
+                <p style="margin-bottom: 25px;">最新の募集情報は公式Discordサーバーにていち早くお届けします。<br>参加して通知をオンにしてお待ちください！</p>
+                <a href="https://discord.roomserver.jp" target="_blank" class="btn-apply"
+                    style="background: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);">
+                    <i class="fab fa-discord"></i> Discordサーバーへ参加
+                </a>
             </div>
 
-            <h2>🛠 募集役職と主な内容</h2>
+            <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.95rem;">
+                <i class="fas fa-arrow-left"></i> ホームへ戻る
+            </a>
+        </div>
+
+        <div class="article-card">
+            <h2>🛠 過去に募集していた主な内容</h2>
+            <p>※以下の内容は参考です。次回募集時に変更される可能性があります。</p>
             <div class="role-grid">
-                <div class="role-card">
-                    <h4>🎥 広報部</h4>
-                    <p>公式YouTube・SNS運用 / 配信・編集など</p>
+                <div class="role-box">
+                    <h4><i class="fas fa-video"></i> 広報部</h4>
+                    <p>公式YouTube・SNS運用 / 配信・編集など。</p>
                 </div>
-                <div class="role-card">
-                    <h4>🤝 ヘルパー</h4>
-                    <p>お問い合わせ対応 / 新規プレイヤー案内 / 管理補佐</p>
+                <div class="role-box">
+                    <h4><i class="fas fa-hands-helping"></i> ヘルパー</h4>
+                    <p>お問い合わせ対応 / プレイヤー案内。</p>
                 </div>
-                <div class="role-card">
-                    <h4>🛡 チェッカー</h4>
-                    <p>サーバー内での案内・荒らし対応</p>
+                <div class="role-box">
+                    <h4><i class="fas fa-user-shield"></i> チェッカー</h4>
+                    <p>秩序維持 / 荒らし対応。</p>
                 </div>
             </div>
-
-            <h2>✅ 応募条件</h2>
-            <h3>🔷 共通条件</h3>
-            <ol>
-                <li>Discord利用規約 & 日本の法律を遵守できる方</li>
-                <li>運営の指示に従える方</li>
-                <li><strong>報・連・相（ホウレンソウ）ができる方</strong></li>
-                <li>必要なことを自ら学習できる方</li>
-                <li>RoomServerの運営方針に共感し従える方</li>
-            </ol>
-            <h3>🛡 チェッカー条件</h3>
-            <ul>
-                <li>職権乱用をしない</li>
-                <li>日本語でスムーズに会話ができる</li>
-                <li>法律・規約をすべて遵守できる</li>
-            </ul>
-            <h3>🎥 広報部条件</h3>
-            <ul>
-                <li>動画編集経験者歓迎（未経験でもOK）</li>
-                <li>配信可能な機材または経験がある方</li>
-            </ul>
-
-            <h2>⚠️ 応募時の注意事項</h2>
-            <ol>
-                <li><strong>選考通過者にはメール「no-reply@roomserver.jp」、または、「roomserver.punishment」からDMを送信します。</strong><br><em>➤
-                        DM／メールを受け取れるよう設定をお願いします。</em></li>
-                <li><strong>合否どちらも必ず連絡します。</strong><br><em>➤ 万が一通知がない場合はご連絡ください。</em></li>
-                <li>一部役職（開発部など）には<strong>簡単な面接</strong>があります。<br><em>➤ ポートフォリオ提出を求める場合があります。</em></li>
-                <li>募集条件は<strong>予告なく変更される場合があります。</strong></li>
-            </ol>
-
-            <div class="apply-button-container">
-                <a href="https://forms.gle/9qHoYZZsZJm22ET89" class="btn-apply" target="_blank"
-                    rel="noopener noreferrer">📎 応募はこちらから</a>
-            </div>
-
-            <p class="closing-remark">🔥「RoomServerをもっと良くしたい！」という熱意ある方のご応募をお待ちしています！</p>
         </div>
     </main>
-    <footer class="main-footer">
-        <p>&copy; 2024 - <span id="current-year"></span> KakkaGroup</p>
+
+    <footer class="footer">
+        <div style="margin-bottom: 20px;">
+            <img src="img/roomserver_logo_no_bg.png" alt="RoomServer Logo" style="height: 35px; opacity: 0.8;">
+        </div>
+        <p>&copy; 2024 - <span id="year"></span> RoomServer. Not an official Minecraft product.</p>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const closeMenuButton = document.querySelector('.close-menu-button');
-            const overlay = document.querySelector('.mobile-nav-overlay');
-            const panel = document.querySelector('.mobile-nav-panel');
-            const body = document.body;
-            const openMenu = () => { panel.classList.add('active'); overlay.classList.add('active'); body.style.overflow = 'hidden'; };
-            const closeMenu = () => { panel.classList.remove('active'); overlay.classList.remove('active'); body.style.overflow = ''; };
-            mobileMenuButton.addEventListener('click', openMenu);
-            closeMenuButton.addEventListener('click', closeMenu);
-            overlay.addEventListener('click', closeMenu);
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingOverlay.classList.add('fade-out');
+                }, 500);
+            });
+            document.body.classList.add('fade-in');
+
+            const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+            links.forEach(link => {
+                link.addEventListener('click', e => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('javascript:')) {
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 800);
+                    }
+                });
+            });
+            document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
 </body>

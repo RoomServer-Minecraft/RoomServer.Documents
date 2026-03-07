@@ -4,342 +4,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プライバシーポリシー - RoomServer</title>
-
+    <title>Privacy Policy - RoomServer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Outfit:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <style>
-        body {
-            background-color: #161b22;
-            color: #c9d1d9;
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            line-height: 1.8;
-            padding-top: 70px;
+        :root {
+            --primary: #d2a679;
+            --secondary: #f1c40f;
+            --bg-dark: #0e0d0b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #a8a29e;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'DotGothic16', 'Outfit', 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .loading-spinner-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(210, 166, 121, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- Header --- */
         .main-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 70px;
+            height: 80px;
             z-index: 1000;
-            background-color: rgba(22, 27, 34, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #30363d;
-            padding: 0 20px;
-            box-sizing: border-box;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
         }
 
-        .main-header nav {
-            max-width: 1100px;
+        .nav-container {
+            width: 100%;
+            max-width: 1300px;
             margin: 0 auto;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%;
         }
 
         .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
             color: #fff;
             text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .desktop-nav {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
             gap: 30px;
-            margin: 0;
-            padding: 0;
         }
 
         .nav-links a {
-            color: #c9d1d9;
+            color: var(--text-muted);
             text-decoration: none;
-            transition: color .2s ease;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
             color: #fff;
         }
 
-        .btn-top-page {
-            background-color: #f0f6fc;
-            color: #161b22 !important;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 500;
+        .btn-top {
+            background: #fff;
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- Content Area --- */
+        main {
+            padding: 160px 20px 100px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .article-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .article-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .article-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .article-card h2::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .article-card ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .article-card li {
+            position: relative;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .article-card li::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            color: var(--primary);
+        }
+
+        .contact-box {
+            text-align: center;
+            margin-top: 80px;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(59, 130, 246, 0.1));
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
         }
 
         .btn-discord {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            border: 1px solid #555;
-            padding: 8px 16px;
-            border-radius: 6px;
+            gap: 10px;
+            background: #5865F2;
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 50px;
             text-decoration: none;
-            color: #c9d1d9;
-        }
-
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
+            font-weight: 700;
+            margin-top: 25px;
             transition: 0.3s;
-            z-index: 1090;
         }
 
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        .btn-discord:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.4);
         }
 
-        .mobile-nav-panel {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 280px;
-            height: 100%;
-            background: #161b22;
-            transform: translateX(100%);
-            transition: 0.3s;
-            z-index: 1100;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .mobile-nav-panel.active {
-            transform: translateX(0);
-        }
-
-        .close-menu-button {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 36px;
-            cursor: pointer;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            padding: 0;
-            margin-top: 40px;
-        }
-
-        .mobile-nav-links a {
-            display: block;
-            padding: 15px 0;
-            color: #fff;
-            text-decoration: none;
-            border-bottom: 1px solid #30363d;
-        }
-
-        main {
-            padding: 60px 20px;
-        }
-
-        .policy-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .policy-title {
+        /* --- Footer --- */
+        .footer {
+            padding: 60px 40px;
+            border-top: 1px solid var(--glass-border);
             text-align: center;
-            margin-bottom: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        .policy-title h1 {
-            font-size: 2.3rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
 
-        .policy-title p {
-            color: #8b949e;
-        }
-
-        .article-block {
-            background: #1c2128;
-            border: 1px solid #30363d;
-            border-left: 4px solid #61dafb;
-            padding: 25px 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .article-block h2 {
-            margin-top: 0;
-            color: #fff;
-        }
-
-        .article-block ul {
-            padding-left: 20px;
-        }
-
-        .main-footer {
-            background: #0d1117;
-            color: #8b949e;
-            padding: 30px 20px;
-            text-align: center;
-            border-top: 1px solid #30363d;
-        }
-
-        @media (max-width: 992px) {
             .desktop-nav {
                 display: none;
             }
 
-            .mobile-menu-button {
-                display: block;
+            .article-card {
+                padding: 30px;
             }
         }
     </style>
 </head>
 
 <body>
-
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner-circle"></div>
+    </div>
     <header class="main-header">
-        <nav>
-            <a href="index.html" class="logo">RoomServer</a>
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/roomserver_logo_no_bg.png" alt="RoomServer Logo">
+            </a>
             <div class="desktop-nav">
                 <ul class="nav-links">
                     <li><a href="docs.html">ドキュメント</a></li>
-                    <li><a href="recruit.html">運営募集</a></li>
-                    <li><a href="policy.html">プライバシーポリシー</a></li>
-                    <li><a href="tos.html">コミュニティガイド</a></li>
+                    <li><a href="recruit.html">スタッフ募集</a></li>
+                    <li><a href="policy.html">プライバシー</a></li>
+                    <li><a href="tos.html">ガイドライン</a></li>
                 </ul>
-                <a href="https://discord.roomserver.jp" class="btn-discord" target="_blank"
-                    rel="noopener noreferrer"><i class="fab fa-discord"></i> Discordに参加</a>
-                <a href="index.html" class="btn-top-page">トップページ</a>
+                <a href="index.html" class="btn-top">Home</a>
             </div>
-            <button class="mobile-menu-button" aria-label="メニューを開く"><i class="fas fa-bars"></i></button>
         </nav>
     </header>
-    <div class="mobile-nav-overlay"></div>
-    <div class="mobile-nav-panel">
-        <button class="close-menu-button" aria-label="メニューを閉じる">&times;</button>
-        <ul class="mobile-nav-links">
-            <li><a href="index.html">トップページ</a></li>
-            <li><a href="docs.html">ドキュメント</a></li>
-            <li><a href="recruit.html">運営募集</a></li>
-            <li><a href="policy.html">プライバシーポリシー</a></li>
-            <li><a href="tos.html">コミュニティガイド</a></li>
-            <li><a href="https://discord.roomserver.jp" target="_blank" rel="noopener noreferrer"><i
-                        class="fab fa-discord"></i> Discordに参加</a></li>
-        </ul>
-    </div>
 
     <main>
-        <div class="policy-container">
+        <div class="page-header">
+            <span class="badge">Legal</span>
+            <h1>Privacy Policy</h1>
+            <p>最終更新日: 2026年2月23日</p>
+        </div>
 
-            <div class="policy-title">
-                <h1>📜 RoomServer プライバシーポリシー</h1>
-                <p>最終更新日: 2026年2月23日</p>
-                <p>RoomServerはユーザーのプライバシーを尊重し、取得する個人情報の適切な管理に努めます。</p>
-            </div>
+        <div class="article-card">
+            <h2>第1条（取得する情報）</h2>
+            <ul>
+                <li>Minecraftユーザー名・UUID</li>
+                <li>Discordユーザー名・ユーザーID</li>
+                <li>接続日時・IPアドレス・ホスト名</li>
+                <li>ゲーム内チャットログ・行動ログ</li>
+                <li>Discord発言履歴</li>
+                <li>寄付決済ID（カード情報は保持しません）</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第1条（取得する情報）</h2>
-                <ul>
-                    <li>Minecraftユーザー名・UUID</li>
-                    <li>Discordユーザー名・ユーザーID</li>
-                    <li>接続日時・IPアドレス・ホスト名</li>
-                    <li>ゲーム内チャットログ・行動ログ</li>
-                    <li>Discord発言履歴</li>
-                    <li>寄付決済ID（カード情報は保持しません）</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第2条（利用目的）</h2>
+            <ul>
+                <li>サービス運営・認証・特典付与</li>
+                <li>荒らし対策・不正防止</li>
+                <li>ユーザーサポート</li>
+                <li>システム改善・最適化</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第2条（利用目的）</h2>
-                <ul>
-                    <li>サービス運営・認証・特典付与</li>
-                    <li>荒らし対策・不正防止</li>
-                    <li>ユーザーサポート</li>
-                    <li>システム改善・最適化</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第3条（第三者提供）</h2>
+            <ul>
+                <li>本人同意がある場合</li>
+                <li>法令に基づく要請がある場合</li>
+                <li>BAN共有プラットフォーム登録</li>
+                <li>緊急の人命保護が必要な場合</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第3条（第三者提供）</h2>
-                <ul>
-                    <li>本人同意がある場合</li>
-                    <li>法令に基づく要請がある場合</li>
-                    <li>BAN共有プラットフォーム登録</li>
-                    <li>緊急の人命保護が必要な場合</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第4条（情報の保護）</h2>
+            <ul>
+                <li>適切なセキュリティ対策を実施</li>
+                <li>アクセス権限はOWNERおよび限定STAFFのみ</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第4条（情報の保護）</h2>
-                <ul>
-                    <li>適切なセキュリティ対策を実施</li>
-                    <li>アクセス権限はOWNERおよび限定STAFFのみ</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第5条（外部サービス）</h2>
+            <ul>
+                <li>Microsoft / Mojang</li>
+                <li>Discord</li>
+                <li>PayPal / Stripe 等</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第5条（外部サービス）</h2>
-                <ul>
-                    <li>Microsoft / Mojang</li>
-                    <li>Discord</li>
-                    <li>PayPal / Stripe 等</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第6条（開示・削除）</h2>
+            <ul>
+                <li>本人からの請求に対応可能</li>
+                <li>BAN記録等は削除不可の場合あり</li>
+            </ul>
+        </div>
 
-            <div class="article-block">
-                <h2>第6条（開示・削除）</h2>
-                <ul>
-                    <li>本人からの請求に対応可能</li>
-                    <li>BAN記録等は削除不可の場合あり</li>
-                </ul>
-            </div>
+        <div class="article-card">
+            <h2>第7条（改定）</h2>
+            <p style="color: var(--text-muted);">本ポリシーは必要に応じて改定され、掲載時点より効力を生じます。</p>
+        </div>
 
-            <div class="article-block">
-                <h2>第7条（改定）</h2>
-                <p>本ポリシーは必要に応じて改定され、掲載時点より効力を生じます。</p>
-            </div>
-
-            <div class="article-block">
-                <h2>お問い合わせ</h2>
-                <p>公式Discord内「チケット」チャンネルまでご連絡ください。</p>
-            </div>
-
+        <div class="contact-box">
+            <h3>お問い合わせ</h3>
+            <p>プライバシーに関するご質問は、公式Discordまでご連絡ください。</p>
+            <a href="https://discord.roomserver.jp" class="btn-discord" target="_blank">
+                <i class="fab fa-discord"></i> Discordに参加する
+            </a>
         </div>
     </main>
 
-    <footer class="main-footer">
-        <p>&copy; 2024 - <span id="year"></span> KakkaGroup</p>
+    <footer class="footer">
+        <div style="margin-bottom: 20px;">
+            <img src="img/roomserver_logo_no_bg.png" alt="RoomServer Logo" style="height: 35px; opacity: 0.8;">
+        </div>
+        <p>&copy; 2024 - <span id="year"></span> RoomServer. Not an official Minecraft product.</p>
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingOverlay.classList.add('fade-out');
+                }, 500);
+            });
+            document.body.classList.add('fade-in');
 
+            const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+            links.forEach(link => {
+                link.addEventListener('click', e => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('javascript:')) {
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 800);
+                    }
+                });
+            });
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 
 </html>

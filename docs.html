@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Outfit:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap"
         rel="stylesheet">
     <!-- Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -18,42 +18,100 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <style>
         :root {
-            --bg-color: #ffffff;
-            --sidebar-bg: #f5f7f9;
-            --border-color: #e6e8eb;
-            --text-color: #24292e;
-            --text-muted: #586069;
-            --accent-color: #3884ff;
+            --primary: #d2a679;
+            --primary-glow: rgba(210, 166, 121, 0.4);
+            --secondary: #f1c40f;
+            --accent: #b37b42;
+            --bg-dark: #0e0d0b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #a8a29e;
             --sidebar-width: 300px;
-            --header-height: 60px;
-            --code-bg: #f6f8fa;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #1c1e21;
-            --sidebar-bg: #111214;
-            --border-color: #2e3034;
-            --text-color: #e3e3e3;
-            --text-muted: #9ea7b3;
-            --accent-color: #4da3ff;
-            --code-bg: #2d3136;
+            --header-height: 70px;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'DotGothic16', 'Outfit', 'Noto Sans JP', sans-serif;
             margin: 0;
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.fade-in {
+            opacity: 1;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .loading-spinner-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(210, 166, 121, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
         }
 
         /* Sidebar Styles */
         .sidebar {
             width: var(--sidebar-width);
-            background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
             height: 100vh;
             position: fixed;
             top: 0;
@@ -65,17 +123,27 @@
         }
 
         .sidebar-header {
-            padding: 0 24px 20px 24px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px 30px 24px;
+            border-bottom: 1px solid var(--glass-border);
             margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar-header .logo img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header .logo img:hover {
+            transform: scale(1.05);
         }
 
         .sidebar-header .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-color);
             text-decoration: none;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .sidebar-nav {
@@ -100,24 +168,24 @@
             border-radius: 6px;
             font-size: 0.9rem;
             line-height: 1.4;
-            transition: all 0.2s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
 
         .sidebar-nav .nav-item:hover {
-            background-color: var(--border-color);
-            color: var(--text-color);
+            background-color: var(--glass-bg);
+            color: #fff;
         }
 
         .sidebar-nav .nav-item.active {
-            background-color: #fff;
-            color: var(--accent-color);
+            background-color: var(--primary);
+            color: #fff;
             font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px var(--primary-glow);
         }
 
-        [data-theme="dark"] .sidebar-nav .nav-item.active {
-            background-color: #2d3136;
+        .sidebar-nav .nav-item.active:hover {
+            background-color: var(--primary);
         }
 
         .sidebar-nav .nav-group-title {
@@ -148,20 +216,17 @@
 
         .content-header {
             height: var(--header-height);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--glass-border);
             display: flex;
             align-items: center;
             padding: 0 40px;
             justify-content: space-between;
             position: sticky;
             top: 0;
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(10, 10, 12, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             z-index: 90;
-        }
-
-        [data-theme="dark"] .content-header {
-            background-color: rgba(28, 30, 33, 0.8);
         }
 
         .breadcrumb {
@@ -194,7 +259,7 @@
             height: calc(100vh - var(--header-height));
             overflow-y: auto;
             padding: 40px 20px;
-            border-left: 1px solid var(--border-color);
+            border-left: 1px solid var(--glass-border);
         }
 
         .toc-title {
@@ -222,11 +287,11 @@
             text-decoration: none;
             display: block;
             line-height: 1.4;
-            transition: color 0.2s;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .toc-link:hover {
-            color: var(--accent-color);
+            color: var(--primary);
         }
 
         .toc-link.indent-3 {
@@ -244,7 +309,7 @@
             font-size: 2.5rem;
             margin-bottom: 32px;
             padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--glass-border);
             font-weight: 700;
         }
 
@@ -253,8 +318,8 @@
             margin-top: 48px;
             margin-bottom: 24px;
             font-weight: 600;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
+            padding-left: 15px;
+            border-left: 4px solid var(--primary);
         }
 
         .markdown-body h3 {
@@ -269,7 +334,7 @@
         }
 
         .markdown-body a {
-            color: var(--accent-color);
+            color: var(--primary);
             text-decoration: none;
         }
 
@@ -279,11 +344,41 @@
 
         .markdown-body img {
             max-width: 100%;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 24px 0;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--glass-border);
             cursor: zoom-in;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+        }
+
+        .markdown-body img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Figure & Figcaption logic - ONLY show caption if image fails */
+        .markdown-body figure {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .markdown-body figure img+figcaption {
+            display: none;
+            background: rgba(248, 81, 73, 0.1);
+            color: #ff9ca3;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #f85149;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .markdown-body figure img.error {
+            display: none;
+        }
+
+        .markdown-body figure img.error+figcaption {
+            display: block;
         }
 
         .markdown-body table {
@@ -294,14 +389,15 @@
 
         .markdown-body th,
         .markdown-body td {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--glass-border);
             padding: 12px 16px;
             text-align: left;
         }
 
         .markdown-body th {
-            background-color: var(--sidebar-bg);
-            font-weight: 600;
+            background-color: var(--glass-bg);
+            font-weight: 700;
+            color: var(--primary);
         }
 
         .markdown-body code {
@@ -315,12 +411,13 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--glass-border);
         }
 
         .markdown-body code:hover {
-            background-color: var(--border-color);
-            border-color: var(--accent-color);
+            background-color: var(--primary);
+            border-color: var(--secondary);
+            color: #fff;
         }
 
         .markdown-body code:active {
@@ -345,8 +442,8 @@
             position: relative;
             margin: 24px 0;
             border-radius: 8px;
-            background-color: var(--code-bg);
-            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
             overflow: hidden;
         }
 
@@ -354,13 +451,13 @@
             display: flex;
             justify-content: flex-end;
             padding: 8px 12px;
-            background-color: var(--sidebar-bg);
-            border-bottom: 1px solid var(--border-color);
+            background-color: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .copy-button {
             background: none;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--glass-border);
             color: var(--text-muted);
             padding: 4px 8px;
             border-radius: 4px;
@@ -369,7 +466,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .copy-button:hover {
@@ -398,11 +495,12 @@
         }
 
         .markdown-body blockquote {
-            border-left: 4px solid var(--border-color);
-            padding: 4px 0 4px 20px;
+            border-left: 4px solid var(--accent);
+            padding: 10px 0 10px 25px;
+            background: var(--glass-bg);
             color: var(--text-muted);
             margin: 24px 0;
-            font-style: italic;
+            border-radius: 0 12px 12px 0;
         }
 
         /* GitBook Hints */
@@ -531,25 +629,28 @@
             justify-content: space-between;
             margin-top: 60px;
             padding-top: 40px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--glass-border);
             gap: 20px;
         }
 
         .pagination-link {
             flex: 1;
             padding: 24px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
             text-decoration: none;
-            color: var(--text-color);
-            transition: all 0.2s;
+            color: var(--text-main);
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
+            background: var(--glass-bg);
         }
 
         .pagination-link:hover {
-            border-color: var(--accent-color);
-            background-color: var(--sidebar-bg);
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Mobile */
@@ -584,9 +685,14 @@
 </head>
 
 <body data-theme="dark">
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner-circle"></div>
+    </div>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="index.html" class="logo">RoomServer Docs</a>
+            <a href="index.html" class="logo">
+                <img src="img/roomserver_logo_no_bg.png" alt="RoomServer Logo">
+            </a>
         </div>
         <nav class="sidebar-nav" id="sidebar-nav">
             <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>
@@ -600,11 +706,8 @@
                 <div class="breadcrumb" id="breadcrumb">Documentation</div>
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
-                <button class="theme-toggle" id="theme-toggle" title="テーマ切り替え">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">
-                    <i class="fas fa-home"></i> トップへ
+                <a href="index.html" style="color: var(--text-main); text-decoration: none; font-size: 0.9rem;">
+                    <i class="fas fa-home"></i> ホーム
                 </a>
             </div>
         </header>
@@ -631,6 +734,14 @@
     </div>
 
     <script>
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingOverlay.classList.add('fade-out');
+            }, 500);
+        });
+
         const sidebarNav = document.getElementById('sidebar-nav');
         const contentEl = document.getElementById('content');
         const breadcrumbEl = document.getElementById('breadcrumb');
@@ -691,12 +802,7 @@
             });
         };
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', nextTheme);
-            themeToggle.innerHTML = nextTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        });
+
 
         mobileToggle.addEventListener('click', () => {
             sidebar.classList.toggle('active');
@@ -850,11 +956,14 @@
             text = text.replace(/<img src="(.*?)"/g, (match, imgPath) => {
                 if (imgPath.startsWith('http') || imgPath.startsWith('/')) return match;
                 const absoluteImgPath = imgPath.startsWith('.gitbook') ? `docs/${imgPath}` : `docs/${currentDir}${imgPath}`;
-                return `<img src="${absoluteImgPath}"`;
+                return `<img src="${absoluteImgPath}" onerror="this.classList.add('error')"`;
             });
 
             // Parse
-            contentEl.innerHTML = marked.parse(text);
+            // Parse and add error handling to images generated by marked
+            let rawHtml = marked.parse(text);
+            rawHtml = rawHtml.replace(/<img (?!.*onerror)(.*?)>/g, '<img $1 onerror="this.classList.add(\'error\')">');
+            contentEl.innerHTML = rawHtml;
 
             // Process backticks inside tables that marked might have missed (raw HTML tables)
             document.querySelectorAll('.markdown-body td').forEach(td => {
@@ -946,6 +1055,24 @@
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
             if (hash) loadContent(hash);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+
+            const links = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+            links.forEach(link => {
+                link.addEventListener('click', e => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('javascript:')) {
+                        e.preventDefault();
+                        document.body.classList.add('fade-out');
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 800);
+                    }
+                });
+            });
         });
 
         loadSidebar();
