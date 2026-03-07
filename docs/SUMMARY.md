@@ -20,3 +20,5 @@
 
 * [DeclarationCore](mods-info/survival/declarationcore.md)
 * [squaremap](mods-info/survival/squaremap.md)
+* [CyanSetHome](mods-info/survival/cyansethome.md)
+* [WorldGuard](mods-info/survival/worldguard.md)
