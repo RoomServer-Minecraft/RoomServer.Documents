@@ -18,8 +18,8 @@
 
 ## サバイバル鯖 - MOD説明 <a href="#plugins-info" id="plugins-info"></a>
 
-* [DeclarationCore](mods-info/survival/declarationcore.md)
-* [squaremap](mods-info/survival/squaremap.md)
 * [CyanSetHome](mods-info/survival/cyansethome.md)
+* [DeclarationCore](mods-info/survival/declarationcore.md)
+* [Private Chests](mods-info/survival/private-chests.md)
+* [squaremap](mods-info/survival/squaremap.md)
 * [WorldGuard](mods-info/survival/worldguard.md)
-* [Private Chests](mods-info/survival/private-chest.md)
