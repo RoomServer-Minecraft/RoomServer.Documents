@@ -6,6 +6,12 @@ description: RSMのサバイバル鯖について解説します。
 
 <figure><img src="../.gitbook/assets/survival-banner.png" alt=""><figcaption></figcaption></figure>
 
+{% hint style="tips" %}
+**ウィザー討伐について**
+利用規約には特定のMOBの無許可召喚を制限する項目がありますが、本サバイバルサーバーにおいては、ウィザー討伐の申請は原則として不要となりました。
+{% endhint %}
+
+
 ## 説明
 
 昔の参加型マイクラに帰ってきたような感覚で遊べる、サバイバルサーバーです。  
