@@ -14,12 +14,14 @@
 
 * [HUB鯖](servers-info/hub.md)
 * [サバイバル鯖](servers-info/survival.md)
-* [経済鯖](servers-info/economy.md)
 
-## サバイバル鯖 - MOD説明 <a href="#plugins-info" id="plugins-info"></a>
+## サバイバル鯖 - プラグイン説明 <a href="#plugins-info" id="plugins-info"></a>
 
-* [CyanSetHome](mods-info/survival/cyansethome.md)
-* [DeclarationCore](mods-info/survival/declarationcore.md)
-* [Private Chests](mods-info/survival/private-chests.md)
-* [squaremap](mods-info/survival/squaremap.md)
-* [WorldGuard](mods-info/survival/worldguard.md)
+* [EssentialsX](plugins-info/survival/essentialsx.md)
+* [Jobs](plugins-info/survival/jobs.md)
+* [QuickShop](plugins-info/survival/quickshop.md)
+* [DeclarationCore](plugins-info/survival/declarationcore.md)
+* [BlockLocker](plugins-info/survival/blocklocker.md)
+* [WorldGuard](plugins-info/survival/worldguard.md)
+
+

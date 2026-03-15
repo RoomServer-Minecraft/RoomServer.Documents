@@ -70,7 +70,7 @@ description: RSMのサバイバル鯖について解説します。
 
 ### 第3条（勝敗の決定）
 
-勝敗はMODのシステムに従います。  
+勝敗はプラグインのシステムに従います。  
 リーダーが復活回数（最大3回）を使い切った状態で、死亡すると勝敗が決定します。  
 システムによる判定が最優先であり、これに異議を唱えることはできません。
 
@@ -128,12 +128,15 @@ description: RSMのサバイバル鯖について解説します。
 保護エリアは、初期スポーンから**半径2チャンク以内**となっています。  
 このエリア内でのPvP行為、破壊行為、窃盗行為は**禁止**とします。
 
-## 導入MOD一覧
+## 導入プラグイン一覧
 
-| Mod名        | 説明 |
+| プラグイン名 | 説明 |
 | ----------------------------------------------------------- | -------------------------- |
-| [CyanSetHome](mods-info/survival/cyansethome.md)            | 設定したホームへテレポートができます。 |
-| [DeclarationCore](../mods-info/survival/declarationcore.md) | 戦争・勢力に関するシステムを管理できます。 |
-| [Pricate Chests](../mods-info/survival/private-chests.md)   | チェストを保護することができます。 |
-| [squaremap](../mods-info/survival/squaremap.md)             | Web上でワールドの全体マップを見ることができます。 |
-| [WorldGuard](../mods-info/survival/worldguard.md)           | 範囲内の建造物を保護できます。 |
+| [CyanSetHome](../plugins-info/survival/cyansethome.md) | 設定したホームへテレポートができます。 |
+| [DeclarationCore](../plugins-info/survival/declarationcore.md) | 戦争・勢力に関するシステムを管理できます。 |
+| [BlockLocker](../plugins-info/survival/blocklocker.md) | 看板を使ってチェストや樽を保護できます。 |
+| [squaremap](../plugins-info/survival/squaremap.md) | Web上でワールドの全体マップを見ることができます。 |
+| [WorldGuard](../plugins-info/survival/worldguard.md) | 範囲内の建造物を保護できます。 |
+| [EssentialsX](../plugins-info/survival/essentialsx.md) | 所持金の確認や送金、ホーム機能などの基本機能を提供します。 |
+| [Jobs](../plugins-info/survival/jobs.md) | 伐採や採掘などの仕事をしてお金を稼ぐことができます。 |
+| [QuickShop](../plugins-info/survival/quickshop.md) | チェストを使って簡単にアイテムの売買ができます。 |
