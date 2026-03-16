@@ -28,8 +28,5 @@ description: 経済鯖の基本コマンドを提供するEssentialsXについ�
 
 ## ホーム機能について
 
-当サーバーでは、ホーム機能として「**CyanSetHome**」を採用しています。  
-詳細な設定方法や使い方は、以下のリンクからご確認ください。
-
-[CyanSetHome (ホーム機能) について詳しくはこちら](plugins-info/survival/cyansethome.md)
-
+当サーバーでは、ホーム機能としても「**EssentialsX**」を採用しています。  
+詳細な設定方法や使い方は、[こちら](./essentialsx-home.md)からご確認ください。
