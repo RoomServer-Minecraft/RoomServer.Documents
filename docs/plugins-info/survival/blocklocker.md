@@ -1,4 +1,4 @@
-# BlockLocker (チェスト保護)
+# BlockLocker (チェスト保護システム)
 
 ## BlockLockerとは？
 

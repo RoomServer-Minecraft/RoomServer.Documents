@@ -824,7 +824,7 @@
 
         async function loadSidebar() {
             try {
-                const response = await fetchWithRetry('release/SUMMARY.md');
+                const response = await fetchWithRetry('docs/release/SUMMARY.md');
                 const text = await response.text();
 
                 const lines = text.split(/\r?\n/);
@@ -876,7 +876,7 @@
             });
 
             try {
-                const response = await fetchWithRetry(`release/${path}`);
+                const response = await fetchWithRetry(`docs/release/${path}`);
                 let text = await response.text();
                 renderMarkdown(text, path);
             } catch (err) {
@@ -886,7 +886,7 @@
                     <div style="text-align: center; padding: 40px;">
                         <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #f85149; margin-bottom: 20px;"></i>
                         <h1>コンテンツの読み込みに失敗しました</h1>
-                        <p style="margin: 10px 0;">対象ファイル: <code>release/${decodedPath}</code></p>
+                        <p style="margin: 10px 0;">対象ファイル: <code>docs/release/${decodedPath}</code></p>
                         <p style="color: var(--text-muted); font-size: 0.9rem;">サーバー上にファイルが存在するか、パスが正しいか確認してください。</p>
                         <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
                             <button onclick="location.hash='#README.md'; location.reload();" style="padding: 8px 16px; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color); background: var(--sidebar-bg); color: var(--text-color);">ホームへ戻る</button>
@@ -950,12 +950,12 @@
             const currentDir = path.includes('/') ? path.split('/').slice(0, -1).join('/') + '/' : '';
             text = text.replace(/\!\[(.*?)\]\((.*?)\)/g, (match, alt, imgPath) => {
                 if (imgPath.startsWith('http') || imgPath.startsWith('/')) return match;
-                const absoluteImgPath = imgPath.startsWith('.gitbook') ? `release/${imgPath}` : `release/${currentDir}${imgPath}`;
+                const absoluteImgPath = imgPath.startsWith('.gitbook') ? `docs/release/${imgPath}` : `docs/release/${currentDir}${imgPath}`;
                 return `![${alt}](${absoluteImgPath})`;
             });
             text = text.replace(/<img src="(.*?)"/g, (match, imgPath) => {
                 if (imgPath.startsWith('http') || imgPath.startsWith('/')) return match;
-                const absoluteImgPath = imgPath.startsWith('.gitbook') ? `release/${imgPath}` : `release/${currentDir}${imgPath}`;
+                const absoluteImgPath = imgPath.startsWith('.gitbook') ? `docs/release/${imgPath}` : `docs/release/${currentDir}${imgPath}`;
                 return `<img src="${absoluteImgPath}" onerror="this.classList.add('error')"`;
             });
 

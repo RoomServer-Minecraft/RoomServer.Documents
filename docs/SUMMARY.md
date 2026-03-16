@@ -15,13 +15,20 @@
 * [HUB鯖](servers-info/hub.md)
 * [サバイバル鯖](servers-info/survival.md)
 
+## システム説明 <a href="#systems-info" id="systems-info"></a>
+* [宣戦布告システム](systems-info/declaration.md)
+* [経済システム](systems-info/economy.md)
+
 ## サバイバル鯖 - プラグイン説明 <a href="#plugins-info" id="plugins-info"></a>
 
+* [BlockLocker](plugins-info/survival/blocklocker.md)
+* [DeclarationCore](plugins-info/survival/declarationcore.md)
 * [EssentialsX](plugins-info/survival/essentialsx.md)
+* [EssentialsX - ホーム機能](plugins-info/survival/essentialsx-home.md)
 * [Jobs](plugins-info/survival/jobs.md)
 * [QuickShop](plugins-info/survival/quickshop.md)
-* [DeclarationCore](plugins-info/survival/declarationcore.md)
-* [BlockLocker](plugins-info/survival/blocklocker.md)
 * [WorldGuard](plugins-info/survival/worldguard.md)
 
+## リリースノート
 
+* [最新のリリース](./release/releases/2026-03-17.md)

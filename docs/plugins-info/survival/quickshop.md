@@ -4,7 +4,9 @@ description: 経済鯖でのショップ作成プラグイン「QuickShop」の�
 
 # QuickShop (ショップシステム)
 
-QuickShopは、チェストを使って簡単にショップを作成・利用できるプラグインです。
+## QuickShopとは？
+
+「QuickShop」とは、チェストを使って簡単にショップを作成・利用できるプラグインです。
 
 ## 使い方
 
